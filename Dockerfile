@@ -16,6 +16,7 @@ RUN apt-get update \
 
 RUN sed -i -e "s/^bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/" /etc/mysql/mariadb.conf.d/50-server.cnf
 COPY my-phabricator.cnf /etc/mysql/conf.d/my-phabricator.cnf
+RUN chmod 0444 /etc/mysql/conf.d/my-phabricator.cnf
 
 ARG PHABRICATOR_COMMIT
 ENV PHABRICATOR_COMMIT ${PHABRICATOR_COMMIT:-stable}
